@@ -85,9 +85,3 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-surrounded/.vsconfig
-# Github Actions & CI/CD temp files
-/[Aa]rtifacts/
-/[Cc]odeCoverage/
-**/[Aa]rtifacts/
-**/[Cc]odeCoverage/
