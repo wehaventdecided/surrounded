@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
+    public bool gameOver = false;
     public void Setup(){
         gameObject.SetActive(true);
+        gameOver = true;
     }
 
     public void RestartButton(){

@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5066b86bd806416e9f9be243c8efdee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f15023accf29cdb49bc43e2fe412007c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -155,7 +155,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,19 +163,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.09949689, y: 0.21914107}
-      - {x: -0.1083585, y: 0.2853132}
-      - {x: -0.21265662, y: 0.27796978}
-      - {x: -0.22643673, y: 0.20857313}
-      - {x: -0.2716415, y: 0.16265658}
-      - {x: -0.24961126, y: 0.104686856}
-      - {x: -0.24796973, y: 0.0783585}
-      - {x: -0.19244486, y: 0.07929195}
-      - {x: -0.14461009, y: 0.0955271}
-      - {x: -0.08, y: 0.0783585}
-      - {x: -0.05367171, y: 0.08101508}
-      - {x: -0.055701926, y: 0.11101514}
-      - {x: -0.048358537, y: 0.17}
+    - - {x: 0.11, y: 0.03}
+      - {x: 0.06, y: 0.12}
+      - {x: -0.06, y: 0.12}
+      - {x: -0.13, y: -0.01}
+      - {x: -0.13, y: -0.04}
+      - {x: -0.12, y: -0.11}
+      - {x: -0.099999994, y: -0.12}
+      - {x: 0.12, y: -0.12}
+      - {x: 0.13, y: -0.089999996}
+      - {x: 0.13, y: -0.01}
   m_UseDelaunayMesh: 0
 --- !u!114 &4356811537811313230
 MonoBehaviour:
@@ -189,16 +186,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607a5e184403246678a050ba7ec45cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  maxSpeed: 4
   fireRate: 2
   health: 25
-  bulletPrefab: {fileID: 301942462713169048, guid: 1a2c216a236ea404a9fc946332f0b53f, type: 3}
+  bulletPrefab: {fileID: 301942462713169048, guid: 2a7571ddcade46644a50dc5eb3bd086d, type: 3}
   firePoint: {fileID: 2182578315016452914}
-  fireForce: 20
+  fireForce: 12.5
   shootingRange: 10
   targetInnerRadius: 7
   targetOuterRadius: 10
   sprite: {fileID: 6605013512819476269}
+  XPdropped: 1
+  avoidanceRadius: 3
 --- !u!50 &9024527655432294418
 Rigidbody2D:
   serializedVersion: 4

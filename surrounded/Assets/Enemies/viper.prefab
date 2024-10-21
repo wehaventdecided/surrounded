@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3faf20eaed56e274fab53c85fa1f804a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57da9b476a353a34484e1e2f855283de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,14 +132,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.15639988, y: 0.24190141}
-      - {x: -0.20814908, y: 0.29262677}
-      - {x: -0.22235802, y: 0.18131338}
-      - {x: -0.23683567, y: 0.027373223}
-      - {x: -0.16175823, y: 0.043448202}
-      - {x: -0.07447766, y: 0.03026885}
-      - {x: -0.08595138, y: 0.20020343}
-      - {x: -0.1092241, y: 0.3013134}
+    - - {x: -0.099999994, y: 0.14999999}
+      - {x: -0.099999994, y: -0.14999999}
+      - {x: 0.099999994, y: -0.14999999}
+      - {x: 0.099999994, y: 0.049999997}
+      - {x: 0.06, y: 0.14999999}
   m_UseDelaunayMesh: 0
 --- !u!114 &7936255646714690491
 MonoBehaviour:
@@ -153,16 +150,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607a5e184403246678a050ba7ec45cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  maxSpeed: 8
   fireRate: 2
   health: 15
   bulletPrefab: {fileID: 301942462713169048, guid: 1a2c216a236ea404a9fc946332f0b53f, type: 3}
   firePoint: {fileID: 5464646103671442227}
-  fireForce: 20
+  fireForce: 10
   shootingRange: 10
   targetInnerRadius: 7
   targetOuterRadius: 10
   sprite: {fileID: 2292161443297363308}
+  XPdropped: 1
+  avoidanceRadius: 3
 --- !u!50 &8370973401546656414
 Rigidbody2D:
   serializedVersion: 4

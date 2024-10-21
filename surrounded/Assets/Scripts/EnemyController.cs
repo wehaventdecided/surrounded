@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float maxSpeed = 3f;
     public float fireRate = 2f; // Time between shots
     public int health = 3;
     public GameObject bulletPrefab;
@@ -17,18 +17,19 @@ public class EnemyController : MonoBehaviour
     public float targetInnerRadius = 7, targetOuterRadius = 10; //inner and outer radius of target ring to move to around player
     public SpriteRenderer sprite;
     private Color originalColor;
-    private GameObject player;
+    protected GameObject player; // changed from private to protected
     private float nextFireTime = 0f;
-    private Vector2 moveTarget;
+    public float XPdropped;
+    
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player"); // Assuming the player has the tag "Player"
-        moveTarget = findTarget();
+        moveTarget = FindPointNearPlayer();
     }
 
     void Update()
-    {
+    {   
         if (player != null)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);  
@@ -45,7 +46,7 @@ public class EnemyController : MonoBehaviour
     private void MoveTowardsPlayer() //moves enemy towards player in a straight line
     {
         //  Vector2 direction = (player.transform.position - transform.position).normalized; 
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, maxSpeed * Time.deltaTime);
     }
 
     private void RotateTowardsPlayer()
@@ -55,17 +56,32 @@ public class EnemyController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, aimAngle);
     }
 
-    private void MoveNearPlayer()
+    public float avoidanceRadius = 3; //Radius of avoidance area around enemy
+    private Vector3 moveTarget;
+    private Vector3 heading;
+    protected void MoveNearPlayer()
     {
-        if (Vector2.Distance(transform.position, (Vector2)player.transform.position + moveTarget) < 1)  //Enemy is near target position
+        if (Vector2.Distance(transform.position, player.transform.position + moveTarget) < 1)  //Enemy is near target position
         {
-            moveTarget = findTarget();
+            moveTarget = FindPointNearPlayer();
+        } 
+        heading = ((moveTarget + player.transform.position) - transform.position).normalized;   
+        Collider2D[] NearbyColliders = Physics2D.OverlapCircleAll(transform.position, avoidanceRadius);
+        foreach (Collider2D collider in NearbyColliders)
+        {
+            
+            if (collider.gameObject != this.gameObject && !collider.gameObject.CompareTag("Bullet"))
+            {
+                float distance = Vector2.Distance(transform.position, collider.transform.position);
+                heading += avoidanceRadius / distance * Vector3.Normalize(transform.position - collider.transform.position);
+            }
         }
-        float speed = moveSpeed - moveSpeed / (Vector2.Distance(transform.position, player.transform.position));
-        transform.position = Vector2.MoveTowards(transform.position, (Vector2)player.transform.position + moveTarget, speed * Time.deltaTime);
+        heading = heading.normalized;
+        transform.position += maxSpeed * Time.deltaTime * heading;
     }
 
-    private Vector2 findTarget()
+
+    protected Vector2 FindPointNearPlayer() // changed from private to protected
     {
         Vector2 randomDirection = Random.insideUnitCircle.normalized; //vector pointing towards direction of target around player
         float randomRadius = Random.Range(targetInnerRadius, targetOuterRadius); //distance target is from player
@@ -79,12 +95,14 @@ public class EnemyController : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
+        PlayerController p = player.GetComponent<PlayerController>(); 
         StartCoroutine(FlashRed());
         health -= damage;
         Debug.Log("Enemy health: " + health); // debug message to track health
 
-        if (health <= 0) {
+        if (health <= 0 && p != null) {
             Debug.Log("Enemy destroyed!");
+            p.XP += XPdropped;
             Destroy(gameObject);
         }
     }
@@ -124,7 +142,7 @@ public class EnemyController : MonoBehaviour
         sprite.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sprite.color = Color.white;
-}
+    }
 }
 
 

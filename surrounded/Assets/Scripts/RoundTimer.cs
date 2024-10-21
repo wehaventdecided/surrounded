@@ -8,6 +8,7 @@ public class RoundTimer : MonoBehaviour
     public int round = 1;
     public TMP_Text timerText;          
     public TMP_Text roundText;         
+    public GameOverScreen gameOverScreen;
 
     void Start()
     {
@@ -19,12 +20,17 @@ public class RoundTimer : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0f)
+        if (timer <= 0f && gameOverScreen.gameOver == false)
         {
             IncrementRound();
             timer = roundDuration; 
         }
-        UpdateTimerText();
+        if(gameOverScreen.gameOver == false){
+            UpdateTimerText();
+        }
+        else{
+            return;
+        }
     }
 
     void IncrementRound()

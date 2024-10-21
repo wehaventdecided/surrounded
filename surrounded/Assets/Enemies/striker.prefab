@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d9a198021656d4e3c9e2f2f333347872, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b6e491773abe6d4692a1fa5308f2ff5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +124,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 0.32, y: 0.39}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,19 +132,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.19216514, y: 0.18825321}
-      - {x: -0.2592882, y: 0.1502373}
-      - {x: -0.27362037, y: -0.07952545}
-      - {x: -0.1958607, y: -0.084185265}
-      - {x: -0.12435234, y: -0.08281369}
-      - {x: -0.04433219, y: -0.0856678}
-      - {x: -0.048530143, y: 0.029427785}
-      - {x: -0.048427038, y: 0.07795253}
-      - {x: -0.066563874, y: 0.14187443}
-      - {x: -0.080711804, y: 0.19614238}
-      - {x: -0.13073069, y: 0.19763248}
-      - {x: -0.1343322, y: 0.3056678}
-      - {x: -0.17747799, y: 0.31385764}
+    - - {x: -0.03, y: 0.195}
+      - {x: -0.12, y: 0.005}
+      - {x: -0.13, y: -0.175}
+      - {x: -0.13, y: -0.195}
+      - {x: 0.13, y: -0.195}
+      - {x: 0.13, y: 0.055}
+      - {x: 0.06, y: 0.195}
   m_UseDelaunayMesh: 0
 --- !u!50 &6850191394942483692
 Rigidbody2D:
@@ -185,16 +179,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607a5e184403246678a050ba7ec45cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  maxSpeed: 25
   fireRate: 2
-  health: 30
-  bulletPrefab: {fileID: 301942462713169048, guid: 1a2c216a236ea404a9fc946332f0b53f, type: 3}
+  health: 60
+  bulletPrefab: {fileID: 301942462713169048, guid: fe917482b493d614480bd59c67b7010c, type: 3}
   firePoint: {fileID: 3183919931402661476}
-  fireForce: 20
+  fireForce: 10
   shootingRange: 10
   targetInnerRadius: 7
   targetOuterRadius: 10
   sprite: {fileID: 6922347402053109228}
+  XPdropped: 7
+  avoidanceRadius: 3
 --- !u!1 &1872739135838276893
 GameObject:
   m_ObjectHideFlags: 0

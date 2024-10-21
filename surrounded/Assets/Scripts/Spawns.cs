@@ -9,6 +9,8 @@ public class ShipSpawner : MonoBehaviour
     public GameObject juggernaut;  // Assign Juggernaut ship prefab in the Inspector
     public GameObject striker;     // Assign Striker ship prefab in the Inspector
     public GameObject dreadnought;     // Assign Striker ship prefab in the Inspector
+    public GameObject C0BU5;
+    public GameObject asteroid;
     public float spawnInterval = 5f;      // Time between spawns
     public Transform targetPoint;         // Target for ships to move towards (e.g., player ship)
     private Camera mainCamera;            // Reference to the main camera
@@ -30,6 +32,10 @@ public class ShipSpawner : MonoBehaviour
     IEnumerator SpawnShips()
     {
         yield return new WaitForSeconds(spawnInterval/2);
+        /*if(RoundNumber() == 10){
+            Vector2 spawnPosition = GetOffScreenPosition();  // Get off-screen spawn position
+            GameObject newShip = Instantiate(C0BU5, spawnPosition, Quaternion.identity);
+        }*/
         while(true){
             availableCredits = availableCreditAmount();
             while (availableCredits >= 0)
@@ -44,10 +50,11 @@ public class ShipSpawner : MonoBehaviour
                     Vector2 spawnPosition = GetOffScreenPosition();  // Get off-screen spawn position
                     GameObject newShip = Instantiate(selectedShip, spawnPosition, Quaternion.identity);
 
-                    // Move the ship towards the target point
-                    //MoveShipToTarget(newShip);
                 }
             }
+            // also, spawn one asteroid
+            Vector2 asteroidSpawnPosition = GetOffScreenPosition(); // get off-screen spawn position
+            GameObject newAst = Instantiate(asteroid, asteroidSpawnPosition, Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
